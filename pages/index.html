@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--
+Template Name: Skaxis
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<head>
+<title>Suci.ID</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top"> 
+
+<div class="bgded overlay" style="background-image:url('https://plus.unsplash.com/premium_photo-1683865776032-07bf70b0add1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"> 
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <div id="logo" class="fl_left">
+        <h1><a href="../index.html">Suci.ID</a></h1>
+      </div>
+      <nav id="mainav" class="fl_right">
+        <ul class="clear" id="logauth_button_nav">
+            <li><a href="../index.html">Home</a></li>
+            <li class="active"><a href="#">Article</a></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+</div>
+
+<div class="form-popup" id="myForm">
+    <div class="form-container" id="loginSession">
+        <h2 style="color: black;">Login</h2>
+
+        <label for="email"><b style="color: black;">Email</b></label>
+        <input type="text" placeholder="Enter username" id="usernameLoginAuth" style="color: black;" required>
+
+        <label for="psw"><b style="color: black;">Password</b></label>
+        <input type="password" placeholder="Enter Password" id="passwordLoginAuth" style="color: black;" required>
+
+        <button class="btn" onclick="authLogin()">Login</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </div>
+    <div class="form-container" id="logoutSession">
+
+        <h2 style="color: black;">This is suci</h2>
+
+        <button class="btn" onclick="authLogout()">Logout</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </div>
+</div>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <div id="newArticleMake">
+        <article class="group btmspace-80">
+            <h6 class="heading">Hai Suci ada karangan baru kah ?</h6>
+            <footer class="nospace"><a href="#" class="btn" onclick="openNewPage()">Buat Artikel Baru <i class="fa fa-pencil"></i> </a></footer>
+        </article>
+
+        <hr class="btmspace-80">
+    </div>
+
+    <ul class="nospace group overview" id="contentArticle">      
+    </ul>
+    <div class="clear"></div>
+  </main>
+</div>
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    
+    <div class="one_quarter first">
+      <h6 class="heading">The Gorontalo Institute</h6>
+      <ul class="nospace btmspace-30 linklist contact">
+        Funco Tanipu is the founder of The Gorontalo Institute, the social and non-profit social organization.
+        The Gorontalo Institute was founded in 2005 in Gorontalo. The Gorontalo Institute has approximately 20 years of experience in promoting democracy, human rights and strengthening local political capacity including issues of education, health and village community empowerment
+      </ul>
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">About</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Why I write</a></li>
+        <li><a href="#">My Experience</a></li>
+        <li><a href="#">My Journey</a></li>
+        <li><a href="#">My Goals</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Resources</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Curriculum Vittae</a></li>
+        <li><a href="#">Activity</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Address</h6>
+      <ul class="nospace linklist">
+        <li><i class="fa fa-map-marker"></i> Street Name &amp; Number, Town, Postcode/Zip</li>
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+
+  </footer>
+</div>
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+
+    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="#">suci.id</a></p>
+
+  </div>
+</div>
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js           "></script>
+<script src="../layout/scripts/jquery.backtotop.js     "></script>
+<script src="../layout/scripts/jquery.mobilemenu.js    "></script>
+<script src="../layout/scripts/jquery.flexslider-min.js"></script>
+<script src="../layout/scripts/auth.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", pastikanLogin());
+
+    function openNewPage() {
+        window.open(
+        'http://203.194.112.48/pages/article_input.html', // URL yang ingin dibuka
+        '_blank', // Target jendela baru
+        'width=1366,height=760,scrollbars=yes,resizable=yes' // Properti jendela
+    );
+    }
+
+
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  function pastikanLogin(){
+    let buttonNav = document.getElementById("logauth_button_nav");
+      if(sessionStorage.getItem("username")){
+
+            document.getElementById("newArticleMake").style.display = "block";
+            
+            document.getElementById("logoutSession").style.display = "block";
+            document.getElementById("loginSession").style.display = "none";
+            const li = document.createElement("li");
+            li.setAttribute("id", "loginSessionButton");
+            const a_href = document.createElement("a");
+            a_href.textContent = "Logout";
+            a_href.href = "#";
+            a_href.addEventListener('click', (event) => {
+                event.preventDefault();
+                openForm();
+            })
+
+            li.appendChild(a_href);
+            buttonNav.appendChild(li);
+      }
+      else{
+        
+            document.getElementById("newArticleMake").style.display = "none";
+
+            document.getElementById("loginSession").style.display = "block";
+            document.getElementById("logoutSession").style.display = "none";
+            const li = document.createElement("li");
+            li.setAttribute("id", "logoutSessionButton");
+            const a_href = document.createElement("a");
+            a_href.innerHTML = "login";
+            a_href.href = "#";
+            a_href.addEventListener('click', (event) => {
+                event.preventDefault();
+                openForm();
+            })
+
+            li.appendChild(a_href);
+            buttonNav.appendChild(li);
+      }
+  }
+</script>
+ <script>
+
+  const url_source = "http://203.194.112.48/";
+
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow"
+  };
+  
+  fetch( url_source + "api/article.php", requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+        let resultj = JSON.parse(result)
+
+        let count = 0;
+        resultj.forEach((json) => {
+            const content = document.getElementById("contentArticle");
+            // class one_third
+            const one_third = document.createElement("li");
+            // let att = document.createAttribute("class");
+            // att.value = "one_third";
+            one_third.setAttribute("class", "one_third");
+            
+
+            //article
+            const article = document.createElement("article");
+            //article ahref
+            const a_href = document.createElement("a");
+            a_href.setAttribute("href", url_source + "pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
+
+            const img = document.createElement("img");
+            img.style.width = 300 + "px";
+            img.style.height = 175 + "px";
+            img.setAttribute("src", json.thumbnail);
+            // article h6
+            const h6 = document.createElement("h6");
+            h6.setAttribute("class", "heading");
+            h6.textContent = json.title;
+            
+            // article ul nospace meta
+            const ul = document.createElement("ul");
+            ul.setAttribute("class", "nospace meta");
+            const li1 = document.createElement("li");
+            let i1 = document.createElement("i");
+            let a = document.createElement("a");
+            i1.setAttribute("class", "fa fa-user")
+            a.setAttribute("href", "#");
+            // a.textContent = " " + json.id_user; 
+            a.textContent = " admin"; 
+            li1.appendChild(i1);
+            ul.appendChild(li1);
+            ul.appendChild(a);
+
+            // article p
+            const p = document.createElement("div");
+            p.innerHTML = json.description.substring(0, 100) + "...";
+
+            // article footer
+            const footer = document.createElement("footer");
+            footer.setAttribute("class", "nospace")
+            const a_footer = document.createElement("a");
+            a_footer.setAttribute("class", "btn");
+            a_footer.textContent = "Baca selengkapnya";
+            a_footer.setAttribute("href", url_source + "pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
+            footer.appendChild(a_footer);
+
+            a_href.appendChild(img);
+            article.appendChild(a_href);
+            article.appendChild(h6);
+            article.appendChild(ul);
+            article.appendChild(p);
+            article.appendChild(footer);        
+
+            one_third.appendChild(article);
+            content.appendChild(one_third);
+            count += 1;
+        })
+    })
+    .catch((error) => console.error(error));
+ </script>
+</body>
+</html>

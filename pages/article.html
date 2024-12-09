@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!--
+Template Name: Skaxis
+Author: <a href="https://www.os-templates.com/">OS Templates</a>
+Author URI: https://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: https://www.os-templates.com/template-terms
+-->
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title id="titleArticle">Suci.ID | Article</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body id="top">
+<!-- Top Background Image Wrapper -->
+<div class="bgded overlay light" style="background-image:url('../images/demo/backgrounds/01.png');"> 
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <!-- ################################################################################################ -->
+      <div id="logo" class="fl_left">
+        <h1><a href="../index.html">Suci.ID</a></h1>
+      </div>
+      <nav id="mainav" class="fl_right">
+        <ul class="clear" id="logauth_button_nav">
+          <li><a href="../index.html">Home</a></li>
+          <li class="active"><a href="index.html">Article</a></li>
+        </ul>
+      </nav>
+      <!-- ################################################################################################ -->
+    </header>
+  </div>
+
+  <div class="form-popup" id="myForm">
+    <div class="form-container" id="loginSession">
+      <h1>Login</h1>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter username" id="usernameLoginAuth" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="passwordLoginAuth" required>
+  
+      <button class="btn" onclick="authLogin()">Login</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </div>
+    <div class="form-container" id="logoutSession">
+
+      <h2>This is suci</h2>
+
+      <button class="btn" onclick="authLogout()">Logout</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </div>
+  </div>
+  
+  <div id="breadcrumb" class="hoc clear"> 
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="index.html">article</a></li>
+      <li id="breadcrumb-title-article"></li>
+    </ul>
+  </div>
+</div>
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <div class="content"> 
+      <img style="display: block; margin-left: auto; margin-right: auto; width: 50%; " id="articleContentImage" alt="">
+      <div id="content-article">
+      </div>
+      <br>
+      <div id="comments">
+        <h2>Comments</h2>
+        <ul id="comment_ul_section">
+
+        </ul>
+        <h2>Tulis Komentar</h2>
+        <!-- <form action="#" method="post"> -->
+          <div class="one_third first">
+            <label for="name">Nama <span>*</span></label>
+            <input type="text" name="name" id="inputNameComment" value="" size="22" required>
+          </div>
+          <!-- <div class="one_third">
+            <label for="email">Email <span>*</span></label>
+            <input type="email" name="email" id="email" value="" size="22" required>
+          </div>
+          <div class="one_third">
+            <label for="url">Website</label>
+            <input type="url" name="url" id="url" value="" size="22">
+          </div> -->
+          <div class="block clear">
+            <label for="comment">Your Comment</label>
+            <textarea name="comment" id="txAreaComment" cols="25" rows="10"></textarea>
+          </div>
+          <div>
+            <input type="submit" name="submit" value="Submit Form" onclick="fetchSendComment()">
+            &nbsp;
+            <input type="reset" name="reset" value="Reset Form" onclick="eventHandlerResetButtonComment(event)">
+          </div>
+        <!-- </form> -->
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+<div class="wrapper row4">
+  <footer id="footer" class="hoc clear"> 
+    
+    <div class="one_quarter first">
+      <h6 class="heading">The Gorontalo Institute</h6>
+      <ul class="nospace btmspace-30 linklist contact">
+        Funco Tanipu is the founder of The Gorontalo Institute, the social and non-profit social organization.
+        The Gorontalo Institute was founded in 2005 in Gorontalo. The Gorontalo Institute has approximately 20 years of experience in promoting democracy, human rights and strengthening local political capacity including issues of education, health and village community empowerment
+      </ul>
+      <ul class="faico clear">
+        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">About</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Why I write</a></li>
+        <li><a href="#">My Experience</a></li>
+        <li><a href="#">My Journey</a></li>
+        <li><a href="#">My Goals</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Resources</h6>
+      <ul class="nospace linklist">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Curriculum Vittae</a></li>
+        <li><a href="#">Activity</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+    <div class="one_quarter">
+      <h6 class="heading">Address</h6>
+      <ul class="nospace linklist">
+        <li><i class="fa fa-map-marker"></i> Street Name &amp; Number, Town, Postcode/Zip</li>
+        <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
+        <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+      </ul>
+    </div>
+
+  </footer>
+</div>
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+  </div>
+</div>
+
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="../layout/scripts/jquery.min.js"></script>
+<script src="../layout/scripts/jquery.backtotop.js"></script>
+<script src="../layout/scripts/jquery.mobilemenu.js"></script>
+<script src="../layout/scripts/auth.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", pastikanLogin());
+
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+
+  function pastikanLogin(){
+    let buttonNav = document.getElementById("logauth_button_nav");
+      if(sessionStorage.getItem("username")){
+
+          document.getElementById("logoutSession").style.display = "block";
+          document.getElementById("loginSession").style.display = "none";
+          const li = document.createElement("li");
+          li.setAttribute("id", "loginSessionButton");
+          const a_href = document.createElement("a");
+          a_href.textContent = "Logout";
+          a_href.href = "#";
+          a_href.addEventListener('click', (event) => {
+            event.preventDefault();
+            openForm();
+          })
+
+          li.appendChild(a_href);
+          buttonNav.appendChild(li);
+      }
+      else{
+
+          document.getElementById("loginSession").style.display = "block";
+          document.getElementById("logoutSession").style.display = "none";
+          const li = document.createElement("li");
+          li.setAttribute("id", "logoutSessionButton");
+          const a_href = document.createElement("a");
+          a_href.innerHTML = "login";
+          a_href.href = "#";
+          a_href.addEventListener('click', (event) => {
+            event.preventDefault();
+            openForm();
+          })
+
+          li.appendChild(a_href);
+          buttonNav.appendChild(li);
+      }
+  }
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", fetchArticle);
+  const breadcrumb_title = document.getElementById("breadcrumb-title-article");
+  const content_article = document.getElementById("content-article");
+  const url_source = "http://203.194.112.48/";
+
+  function getIDforArticle(){
+    const params = new URLSearchParams(window.location.search);
+    const dbName = params.get('q');
+
+    if (dbName) {
+      const articleId = dbName.split('-').pop();
+      return articleId;
+    }
+  }
+
+  function fetchArticle(){
+    let id = getIDforArticle();
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("status", "get_article");
+    urlencoded.append("id_article", id);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow"
+    };
+
+    fetch( url_source + "api/article.php", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+
+        let a_href = document.createElement("a");
+        a_href.setAttribute("href", window.location.search);
+        a_href.innerHTML = result[0].title;
+        
+        breadcrumb_title.appendChild(a_href);
+
+        content_article.innerHTML = result[0].description;
+        document.getElementById("articleContentImage").setAttribute("src", result[0].thumbnail);
+        fetchGetComment(id)
+      })
+      .catch((error) => console.error(error));
+    }
+
+</script>
+<script>
+  function eventHandlerResetButtonComment(event) {
+    resetComment()
+  }
+
+  function resetComment(){
+    document.getElementById("txAreaComment").value = "";
+    document.getElementById("inputNameComment").value = "";
+  }
+
+  function someoneComment(nama, komentar, date){
+    const ul_comment = document.getElementById("comment_ul_section");
+    let li_comment = document.createElement("li");
+    let article_comment = document.createElement("article");
+
+    let header = document.createElement("header");
+    
+    let figure_comment = document.createElement("figure");
+    figure_comment.setAttribute("class", "avatar");
+    let img_comment = document.createElement("img");
+    img_comment.setAttribute("src", "../images/demo/avatar.png");
+    figure_comment.appendChild(img_comment);
+
+    let addr_comment = document.createElement("address");
+    let a_href_addr = document.createElement("a");
+    a_href_addr.href = "#";
+    a_href_addr.innerHTML = nama;
+    addr_comment.innerHTML = 'By ';
+    addr_comment.appendChild(a_href_addr);
+
+    let time_comment = document.createElement("time");
+    time_comment.setAttribute("datetime", "2045-04-06T08:15+00:00");
+    let sup_time_comment = document.createElement("sup");
+    sup_time_comment.innerHTML = 'th';
+    time_comment.innerHTML = date.hari + ', '+ date.tanggal; 
+    time_comment.appendChild(sup_time_comment);
+    time_comment.innerHTML = time_comment.innerHTML + ' ' + date.bulan + ' ' + date.tahun;
+
+    header.appendChild(figure_comment);
+    header.appendChild(addr_comment);
+    header.appendChild(time_comment);
+
+    let div_comment = document.createElement('div');
+    div_comment.setAttribute("class", "comcont");
+    let p_comment = document.createElement('p');
+    p_comment.innerHTML = komentar;
+    div_comment.appendChild(p_comment);
+
+    article_comment.appendChild(header);
+    article_comment.appendChild(div_comment);
+    li_comment.appendChild(article_comment);
+    ul_comment.appendChild(li_comment);
+  }
+
+  function fetchGetComment(id){
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("status", "get_comments");
+    urlencoded.append("id_article", id);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow"
+    };
+
+    fetch( url_source + "api/comment.php", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      let resultdata = result.data;
+      resultdata.forEach((json) => {
+        someoneComment(json.nama, json.komentar, convertDate(json.date));
+      })
+    })
+    .catch((error) => console.error(error));
+  }
+
+  function convertDate(dateJson){
+    // Data tanggal dalam format string
+    let tanggalString = String(dateJson);
+
+    // Pisahkan tahun, bulan, dan tanggal
+    let [tahun, bulan, tanggal] = tanggalString.split('-').map(Number);
+
+    // Array nama bulan dan hari
+    const namaBulan = [
+      "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+    const namaHari = [
+      "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
+    ];
+
+    // Buat objek Date
+    let date = new Date(tahun, bulan - 1, tanggal); // Bulan dikurangi 1 karena dimulai dari 0
+
+    // Dapatkan nama hari
+    let hari = namaHari[date.getDay()];
+
+    // Format hasil menjadi JSON
+    let hasilJson = {
+      hari: hari,
+      tanggal: tanggal,
+      bulan: namaBulan[bulan - 1],
+      tahun: tahun
+    };
+
+    let result = hasilJson;
+  
+    return result;
+  }
+
+  function convertDateNow(){
+    // Ambil tanggal dan waktu saat ini
+    let today = new Date();
+
+    // Array nama hari dan bulan
+    const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+    const namaBulan = [
+      "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+      "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ];
+
+    // Ambil data hari, bulan, tahun, dan tanggal
+    let hari = namaHari[today.getDay()];
+    let bulan = namaBulan[today.getMonth()];
+    let tahun = today.getFullYear();
+    let tanggal = today.getDate();
+
+    // Buat objek JSON
+    let resultJson = {
+      hari: hari,
+      tanggal: tanggal,
+      bulan: bulan,
+      tahun: tahun
+    };
+
+    console.log(resultJson);
+    return resultJson;
+  }
+
+  function fetchSendComment(){
+    let id = getIDforArticle();
+
+    const nama = document.getElementById('inputNameComment').value;
+    const komentar = document.getElementById('txAreaComment').value;
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append("status", "set_comment");
+    urlencoded.append("id_article", id);
+    urlencoded.append("nama", nama);
+    urlencoded.append("komentar", komentar);
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: "follow"
+    };
+
+    fetch( url_source + "api/comment.php", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if(result.status === 501){
+          alert(result.message);
+          console.error(result);
+          console.log(id + ' ' + nama + ' ' + komentar);
+        }
+        else{
+          someoneComment(nama, komentar, convertDateNow());
+        }
+        
+      })
+      .catch((error) => console.error(error));
+  }
+
+</script>
+</body>
+</html>

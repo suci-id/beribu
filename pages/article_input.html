@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CKEditor 5 - Quick start CDN</title>
+        <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
+    </head>
+    <body>
+        <label for="imageInput">masukkan judul artikel</label>
+        <br>
+        <input type="text" id="titleInput" required>
+        <br>
+        <label for="imageInput">masukkan thumbnail foto</label>
+        <br>
+        <input type="file" id="imageInput" accept="image/*" required>
+        <br>
+        <img id="preview" src="" alt="Pratinjau Gambar" style="display: none;">
+        <br>
+        <div id="editor">
+            
+        </div>
+
+        <button id="btnCK">Submit</button>
+
+        <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
+
+        <script src="../layout/scripts/CKeditor.js"></script>
+
+        <script>
+            const preview = document.getElementById('preview');
+            imageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0]; // Ambil file pertama yang dipilih
+                if (file) {
+                    const reader = new FileReader(); // Membuat FileReader untuk membaca file
+                    reader.onload = (e) => {
+                        preview.src = e.target.result; // Tampilkan gambar sebagai sumber data
+                        preview.style.display = 'block'; // Tampilkan elemen gambar
+                    };
+                    reader.readAsDataURL(file); // Baca file sebagai Data URL
+                } else {
+                    preview.src = ''; // Kosongkan gambar jika tidak ada file
+                    preview.style.display = 'none';
+                }
+            });
+            document.getElementById("btnCK").addEventListener('click', () => {
+                const editorData = editor.getData();
+                fetchPostNewArticle(editorData)
+                console.log(editorData);
+
+            })
+
+            async function fetchPostNewArticle(txDescArticle){
+                const textInput = txDescArticle;
+                const imageInput = document.getElementById('imageInput').files[0];
+                const titleInput = document.getElementById('titleInput').value;
+		const url_source = "http://203.194.112.48/";
+
+                if (textInput == '' || !imageInput) {
+                    alert('Teks dan gambar harus diisi.');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('status', 'send_article');
+                formData.append('title', titleInput);
+                formData.append('text', textInput);
+                formData.append('image', imageInput);
+
+                try {
+                    const response = await fetch( url_source + 'api/article.php', {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        alert('Upload berhasil! ' + result.message);
+                        window.close();
+                    } else {
+                        alert('Gagal upload: ' + result.error);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat mengupload.');
+                }
+            }
+        </script>
+    </body>
+</html>
