@@ -21,7 +21,7 @@ function authLogin(){
       redirect: "follow"
     };
     
-    fetch("http://203.194.112.48/api/auth.php", requestOptions)
+    fetch("https://alanzulwas.my.id/api/auth.php", requestOptions)
         .then((response) => response.json())
         .then((result) => {
             sessionStorage.setItem("username", result.username)
