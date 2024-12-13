@@ -129,12 +129,14 @@
             // Ambil data teks (jika ada)
             $desc = isset($_POST['text']) ? $_POST['text'] : '';
             $title = isset($_POST['title']) ? $_POST['title'] : '';
+            $kategori = isset($_POST['kategori']) ? $_POST['kategori'] : '';
             // Simpan ke database
             try{
-                $stmt = $pdo->prepare("UPDATE article SET title = :title, description = :description, thumbnail = :thumbnail WHERE id = :id_article");
+                $stmt = $pdo->prepare("UPDATE article SET title = :title, description = :description, kategori = :cat, thumbnail = :thumbnail WHERE id = :id_article");
                 $stmt->execute([
                     'title' => $title,
                     'description' => $desc,
+                    'cat' => $kategori,
                     'thumbnail' => $image,
                     'id_article' => $_POST['id_article'],
                 ]);
