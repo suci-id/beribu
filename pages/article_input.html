@@ -2,89 +2,195 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>CKEditor 5 - Quick start CDN</title>
         <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
+        <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     </head>
-    <body>
-        <label for="imageInput">masukkan judul artikel</label>
-        <br>
-        <input type="text" id="titleInput" required>
-        <br>
-        <label for="imageInput">masukkan thumbnail foto</label>
-        <br>
-        <input type="file" id="imageInput" accept="image/*" required>
-        <br>
-        <img id="preview" src="" alt="Pratinjau Gambar" style="display: none;">
-        <br>
-        <div id="editor">
+    <body id="top">
+
+        <div class="wrapper row3">
+            <main class="hoc container clear">           
+              <div class="content"> 
+                <label for="imageInput">masukkan judul artikel</label>
+                <br>
+                <input type="text" id="titleInput" size="22" required>
+                <br>
+                <label for="imageInput">masukkan kategori artikel</label>
+                <br>
+                <!-- <input type="option" id="titleInput" size="22" required> -->
+                <select id="catInput">
+                    <option value="opini" id="opini-catInput">Opini</option>
+                    <option value="hukum" id="hukum-catInput">Hukum</option>
+                    <option value="sastra" id="sastra-catInput">Sastra</option>
+                </select>
+                <br>
+                <label for="imageInput">masukkan thumbnail foto</label>
+                <br>
+                <input type="file" id="imageInput" accept="image/*" required>
+                <br>
+                <img id="preview" src="" alt="Pratinjau Gambar" style="display: none; margin-left: auto; margin-right: auto; width: 50%;">
+                <br>
+                <div id="editor">
+                    
+                </div>
+
+                <button id="btnCK">Submit</button>
+          
+ 
+              </div>
+              <div class="clear"></div>
+            </main>
+          </div>
+    </body>
+    <script src="../layout/scripts/jquery.min.js"></script>
+    <script src="../layout/scripts/jquery.backtotop.js"></script>
+    <script src="../layout/scripts/jquery.mobilemenu.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
+
+    <script src="../layout/scripts/CKeditor.js"></script>
+
+    <script>
+        const preview = document.getElementById('preview');
+        let dataArticle = []
+        imageInput.addEventListener('change', (event) => {
+        const file = event.target.files[0]; // Ambil file pertama yang dipilih
+            if (file) {
+                const reader = new FileReader(); // Membuat FileReader untuk membaca file
+                reader.onload = (e) => {
+                    preview.src = e.target.result; // Tampilkan gambar sebagai sumber data
+                    preview.style.display = 'block'; // Tampilkan elemen gambar
+                };
+                reader.readAsDataURL(file); // Baca file sebagai Data URL
+            } else {
+                preview.src = ''; // Kosongkan gambar jika tidak ada file
+                preview.style.display = 'none';
+            }
+        });
+        document.getElementById("btnCK").addEventListener('click', () => {
+            const editorData = editor.getData();
+            // console.log(dataArticle[0].thumbnail);
+            try{
+                fetchPostNewArticle(editorData, dataArticle[0].id, dataArticle[0].thumbnail)
+            } catch (e) {
+                fetchPostNewArticle(editorData, 0, 0)
+            }
             
-        </div>
+            // console.log(editorData);
 
-        <button id="btnCK">Submit</button>
+        })
 
-        <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
+        async function fetchPostNewArticle(txDescArticle, id_article, image_before){
+            const textInput = txDescArticle;
+            const imageInput = document.getElementById('imageInput').files[0];
+            const titleInput = document.getElementById('titleInput').value;
+            const catInput = document.getElementById('catInput').value;
+            const url_source = "https://alanzulwas.my.id/";
 
-        <script src="../layout/scripts/CKeditor.js"></script>
-
-        <script>
-            const preview = document.getElementById('preview');
-            imageInput.addEventListener('change', (event) => {
-            const file = event.target.files[0]; // Ambil file pertama yang dipilih
-                if (file) {
-                    const reader = new FileReader(); // Membuat FileReader untuk membaca file
-                    reader.onload = (e) => {
-                        preview.src = e.target.result; // Tampilkan gambar sebagai sumber data
-                        preview.style.display = 'block'; // Tampilkan elemen gambar
-                    };
-                    reader.readAsDataURL(file); // Baca file sebagai Data URL
-                } else {
-                    preview.src = ''; // Kosongkan gambar jika tidak ada file
-                    preview.style.display = 'none';
-                }
-            });
-            document.getElementById("btnCK").addEventListener('click', () => {
-                const editorData = editor.getData();
-                fetchPostNewArticle(editorData)
-                console.log(editorData);
-
-            })
-
-            async function fetchPostNewArticle(txDescArticle){
-                const textInput = txDescArticle;
-                const imageInput = document.getElementById('imageInput').files[0];
-                const titleInput = document.getElementById('titleInput').value;
-		const url_source = "https://alanzulwas.my.id/";
-
+            if(!dataArticle[0]){
                 if (textInput == '' || !imageInput) {
                     alert('Teks dan gambar harus diisi.');
                     return;
                 }
+            }            
 
-                const formData = new FormData();
-                formData.append('status', 'send_article');
-                formData.append('title', titleInput);
-                formData.append('text', textInput);
-                formData.append('image', imageInput);
-
-                try {
-                    const response = await fetch( url_source + 'api/article.php', {
-                        method: 'POST',
-                        body: formData,
-                    });
-
-                    const result = await response.json();
-                    if (response.ok) {
-                        alert('Upload berhasil! ' + result.message);
-                        window.close();
-                    } else {
-                        alert('Gagal upload: ' + result.error);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat mengupload.');
-                }
+            let status = '';
+            const formData = new FormData();
+            const params = new URLSearchParams(window.location.search);
+            const dbName = params.get('q');
+            if (dbName){
+                status = 'update_article';
+                formData.append('id_article', id_article)
             }
-        </script>
-    </body>
+            else{
+                status ='send_article';
+            }
+
+            if (imageInput === undefined){
+                formData.append('image', image_before)
+            }
+            else {
+                formData.append('image', imageInput);
+            }
+            formData.append('status', status);
+            formData.append('title', titleInput);
+            formData.append('text', textInput);
+            formData.append('kategori', catInput);
+
+            try {
+                const response = await fetch( url_source + 'api/article.php', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Upload berhasil! ' + result.message);
+                    console.log(result.console)
+                    // window.close();
+                } else {
+                    alert('Gagal upload: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat mengupload.');
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded',() => {
+            const params = new URLSearchParams(window.location.search);
+            const dbName = params.get('q');
+            if (dbName){
+                fetchSetArticleEdit();
+            }
+        })
+        function getIDforArticle(){
+            const params = new URLSearchParams(window.location.search);
+            const dbName = params.get('q');
+            
+            if (dbName) {
+                const articleId = dbName.split('-').pop();
+                return articleId;
+            }
+        }
+        function fetchSetArticleEdit(){
+            let id = getIDforArticle();
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+            const urlencoded = new URLSearchParams();
+            urlencoded.append("status", "get_article");
+            urlencoded.append("id_article", id);
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: urlencoded,
+                redirect: "follow"
+            };
+
+            fetch("../api/article.php", requestOptions)
+            .then((response) => response.json())
+            .then((result) => {
+                let titleEdit = document.getElementById('titleInput');
+                let imageEdit = document.getElementById('preview');
+                dataArticle = result;
+                // console.log(dataArticle);
+                titleEdit.value = result[0].title;
+                imageEdit.setAttribute("src", result[0].thumbnail);
+                imageEdit.style.display = 'inline-block';
+                editor.setData(result[0].description);
+                if(result[0].kategori == "opini"){
+                    document.getElementById("opini-catInput").selected = "true";
+                }
+                else if(result[0].kategori == "hukum"){
+                    document.getElementById("hukum-catInput").selected = "true";
+                }
+                else if(result[0].kategori == "sastra"){
+                    document.getElementById("sastra-catInput").selected = "true";
+                }
+            })
+        }
+    </script>
 </html>

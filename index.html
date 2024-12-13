@@ -15,12 +15,8 @@ Licence URI: https://www.os-templates.com/template-terms
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
 <div class="bgded overlay" style="background-image:url('images/suci_id_.jpg'); background-position: center;"> 
-  <!-- ################################################################################################ -->
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
       <!-- ################################################################################################ -->
@@ -29,6 +25,7 @@ Licence URI: https://www.os-templates.com/template-terms
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear" id="logauth_button_nav">
+          <!-- <li class="active"><a href="#">Home</a></li> -->
           <li class="active"><a href="#">Home</a></li>
           <li><a href="pages/">Opini</a></li>
           <li><a href="pages/">Hukum</a></li>
@@ -188,7 +185,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
 
-    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="#">suci.id</a></p>
+    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="/">Beribu</a></p>
     <!-- <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p> -->
 
   </div>
@@ -312,9 +309,9 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
             ul.appendChild(li1);
             ul.appendChild(a);
 
-            // article p
-            const p = document.createElement("div");
-            p.innerHTML = json.description.substring(0, 100) + "...";
+            // // article p
+            // const p = document.createElement("div");
+            // p.innerHTML = json.description.substring(0, 100) + "...";
 
             // article footer
             const footer = document.createElement("footer");
@@ -329,7 +326,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
             article.appendChild(a_href);
             article.appendChild(h6);
             article.appendChild(ul);
-            article.appendChild(p);
+            // article.appendChild(p);
             article.appendChild(footer);        
 
             one_third.appendChild(article);

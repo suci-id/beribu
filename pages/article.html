@@ -9,14 +9,13 @@ Licence URI: https://www.os-templates.com/template-terms
 <html lang="">
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 <head>
-<title id="titleArticle">Suci.ID | Article</title>
+<title id="titleArticle">Beribu | Article</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
-<!-- Top Background Image Wrapper -->
-<div class="bgded overlay light" style="background-image:url('../images/demo/backgrounds/01.png');"> 
+<div class="bgded overlay light" style="background-image:url('../images/suci_id_.jpg'); background-position: center;"> 
   <!-- ################################################################################################ -->
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
@@ -26,10 +25,10 @@ Licence URI: https://www.os-templates.com/template-terms
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear" id="logauth_button_nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="pages/">Opini</a></li>
-          <li><a href="pages/">Hukum</a></li>
-          <li><a href="pages/">Sastra</a></li>
+          <li><a href="../">Home</a></li>
+          <li><a href="../pages/">Opini</a></li>
+          <li><a href="../pages/">Hukum</a></li>
+          <li><a href="../pages/">Sastra</a></li>
         </ul>
       </nav>
       <!-- ################################################################################################ -->
@@ -68,30 +67,42 @@ Licence URI: https://www.os-templates.com/template-terms
 </div>
 <div class="wrapper row3">
   <main class="hoc container clear"> 
+    <div id="newArticleMake">
+      <article class="group btmspace-80">
+          <!-- <h6 class="heading">Hai Suci ada karangan baru kah ?</h6> -->
+          <footer class="nospace"><a href="#" class="btn" onclick="openNewPage()">Edit artikel ini ? <i class="fa fa-pencil"></i> </a></footer>
+      </article>
+
+      <hr class="btmspace-80">
+  </div>
+
     <div class="content"> 
+      <h1 style="text-align: center; font-weight: bold;" id="this-title-article"></h1>
       <img style="display: block; margin-left: auto; margin-right: auto; width: 50%; " id="articleContentImage" alt="">
       <div id="content-article">
       </div>
       <br>
+
+      <div id="newArticleMake">
+        <article class="group btmspace-80">
+            <!-- <h6 class="heading">Hai Suci ada karangan baru kah ?</h6> -->
+            <footer class="nospace"><a href="#" class="btn" onclick="openNewPage()">Edit artikel ini ? <i class="fa fa-pencil"></i> </a></footer>
+        </article>
+  
+        <hr class="btmspace-80">
+      </div>
+
       <div id="comments">
         <h2>Comments</h2>
         <ul id="comment_ul_section">
 
         </ul>
         <h2>Tulis Komentar</h2>
-        <!-- <form action="#" method="post"> -->
           <div class="one_third first">
             <label for="name">Nama <span>*</span></label>
-            <input type="text" name="name" id="inputNameComment" value="" size="22" required>
+            <input type="text" name="name" id="inputNameComment" value="" size="50" required>
           </div>
-          <!-- <div class="one_third">
-            <label for="email">Email <span>*</span></label>
-            <input type="email" name="email" id="email" value="" size="22" required>
-          </div>
-          <div class="one_third">
-            <label for="url">Website</label>
-            <input type="url" name="url" id="url" value="" size="22">
-          </div> -->
+
           <div class="block clear">
             <label for="comment">Your Comment</label>
             <textarea name="comment" id="txAreaComment" cols="25" rows="10"></textarea>
@@ -101,12 +112,8 @@ Licence URI: https://www.os-templates.com/template-terms
             &nbsp;
             <input type="reset" name="reset" value="Reset Form" onclick="eventHandlerResetButtonComment(event)">
           </div>
-        <!-- </form> -->
       </div>
-      <!-- ################################################################################################ -->
     </div>
-    <!-- ################################################################################################ -->
-    <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>
@@ -156,8 +163,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 </div>
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="../">Beribu</a></p>
   </div>
 </div>
 
@@ -169,6 +175,15 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 <script src="../layout/scripts/auth.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", pastikanLogin());
+
+  function openNewPage() {
+    let id = getIDforArticle();
+        window.open(
+        'article_input.html'+window.location.search, // URL yang ingin dibuka
+        '_blank', // Target jendela baru
+        'width=800,height=600,scrollbars=yes,resizable=yes' // Properti jendela
+    );
+  }
 
   function openForm() {
     document.getElementById("myForm").style.display = "block";
@@ -218,6 +233,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", fetchArticle);
+  const artice_title = document.getElementById("this-title-article");
   const breadcrumb_title = document.getElementById("breadcrumb-title-article");
   const content_article = document.getElementById("content-article");
   const url_source = "https://alanzulwas.my.id/";
@@ -255,6 +271,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
         let a_href = document.createElement("a");
         a_href.setAttribute("href", window.location.search);
         a_href.innerHTML = result[0].title;
+        artice_title.innerHTML = result[0].title;
         
         breadcrumb_title.appendChild(a_href);
 
@@ -436,8 +453,6 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
       .then((result) => {
         if(result.status === 501){
           alert(result.message);
-          console.error(result);
-          console.log(id + ' ' + nama + ' ' + komentar);
         }
         else{
           someoneComment(nama, komentar, convertDateNow());

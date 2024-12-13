@@ -8,7 +8,7 @@ Licence URI: https://www.os-templates.com/template-terms
 -->
 <html lang="">
 <head>
-<title>Suci.ID</title>
+<title>Beribu</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
@@ -19,14 +19,14 @@ Licence URI: https://www.os-templates.com/template-terms
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
       <div id="logo" class="fl_left">
-        <h1><a href="../index.html">Suci.ID</a></h1>
+        <h1><a href="../index.html">Beribu</a></h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear" id="logauth_button_nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="pages/">Opini</a></li>
-          <li><a href="pages/">Hukum</a></li>
-          <li><a href="pages/">Sastra</a></li>
+          <li><a href="../">Home</a></li>
+          <li id="li-atas-opini"><a href="../pages/index.html?q=kategori-opini" >Opini</a></li>
+          <li id="li-atas-hukum"><a href="../pages/index.html?q=kategori-hukum" >Hukum</a></li>
+          <li id="li-atas-sastra"><a href="../pages/index.html?q=kategori-sastra" >Sastra</a></li>
         </ul>
       </nav>
     </header>
@@ -118,7 +118,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
 
-    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="#">suci.id</a></p>
+    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="../">Beribu</a></p>
 
   </div>
 </div>
@@ -130,14 +130,14 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 <script src="../layout/scripts/jquery.flexslider-min.js"></script>
 <script src="../layout/scripts/auth.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", pastikanLogin());
 
     function openNewPage() {
         window.open(
-        'https://alanzulwas.my.id/pages/article_input.html', // URL yang ingin dibuka
+        'article_input.html', // URL yang ingin dibuka
         '_blank', // Target jendela baru
-        'width=1366,height=760,scrollbars=yes,resizable=yes' // Properti jendela
-    );
+        // 'width=1366,height=760,scrollbars=yes,resizable=yes' // Properti jendela
+        'width=800,height=600,scrollbars=yes,resizable=yes' // Properti jendela
+      );
     }
 
 
@@ -151,11 +151,16 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 
   function pastikanLogin(){
     let buttonNav = document.getElementById("logauth_button_nav");
+    
       if(sessionStorage.getItem("username")){
 
             document.getElementById("newArticleMake").style.display = "block";
-            
+            const auth_delete = document.querySelectorAll('[id*="auth-delete"]');
+            auth_delete.forEach(element => {
+                element.style.display = 'inline-block';
+            });
             document.getElementById("logoutSession").style.display = "block";
+            
             document.getElementById("loginSession").style.display = "none";
             const li = document.createElement("li");
             li.setAttribute("id", "loginSessionButton");
@@ -175,6 +180,11 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
             document.getElementById("newArticleMake").style.display = "none";
 
             document.getElementById("loginSession").style.display = "block";
+
+            const auth_delete = document.querySelectorAll('[id*="auth-delete"]');
+            auth_delete.forEach(element => {
+                element.style.display = 'none';
+            });
             document.getElementById("logoutSession").style.display = "none";
             const li = document.createElement("li");
             li.setAttribute("id", "logoutSessionButton");
@@ -189,6 +199,35 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
             li.appendChild(a_href);
             buttonNav.appendChild(li);
       }
+  }
+
+  function fetchDeleteArticle(id,content) {
+    // console.log("delete")
+    const formdata = new FormData();
+    formdata.append("status", "delete_article");
+    formdata.append("id_article", id);
+    // console.log("id : " + id);
+    // console.log("content : " + content);
+
+    const requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow"
+    };
+
+    fetch("https://alanzulwas.my.id/api/article.php", requestOptions)
+    .then((response) => response.text())
+    .then((result) => {
+      let resultj = JSON.parse(result)
+
+      console.log(resultj)
+      // console.log(result)
+
+      alert(resultj['message'])
+
+      content.remove();
+    })
+    .catch((error) => console.error(error));
   }
 </script>
  <script>
@@ -205,70 +244,115 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
     .then((result) => {
         let resultj = JSON.parse(result)
 
+        const content = document.getElementById("contentArticle");
+        const params = new URLSearchParams(window.location.search);
+        const dbName = params.get('q');
+        let kategori = '';
+
+        if (dbName) {
+          kategori = dbName.split('-').pop();
+        }
+
+        if (kategori === 'opini'){
+          document.getElementById('li-atas-opini').setAttribute("class","active")
+        }
+        if (kategori === 'hukum'){
+          document.getElementById('li-atas-hukum').setAttribute("class","active")
+        }
+        if (kategori === 'sastra'){
+          document.getElementById('li-atas-sastra').setAttribute("class","active")
+        }
+
+
+
         let count = 0;
         resultj.forEach((json) => {
-            const content = document.getElementById("contentArticle");
-            // class one_third
-            const one_third = document.createElement("li");
-            // let att = document.createAttribute("class");
-            // att.value = "one_third";
-            one_third.setAttribute("class", "one_third");
             
 
-            //article
-            const article = document.createElement("article");
-            //article ahref
-            const a_href = document.createElement("a");
-            a_href.setAttribute("href", url_source + "pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
+            if(json.kategori === kategori){
+              // class one_third
+              const one_third = document.createElement("li");
+              // let att = document.createAttribute("class");
+              // att.value = "one_third";
+              one_third.setAttribute("class", "one_third");
+              
 
-            const img = document.createElement("img");
-            img.style.width = 300 + "px";
-            img.style.height = 175 + "px";
-            img.style.objectFit = "contain";
-            img.setAttribute("src", json.thumbnail);
-            // article h6
-            const h6 = document.createElement("h6");
-            h6.setAttribute("class", "heading");
-            h6.textContent = json.title;
-            
-            // article ul nospace meta
-            const ul = document.createElement("ul");
-            ul.setAttribute("class", "nospace meta");
-            const li1 = document.createElement("li");
-            let i1 = document.createElement("i");
-            let a = document.createElement("a");
-            i1.setAttribute("class", "fa fa-user")
-            a.setAttribute("href", "#");
-            // a.textContent = " " + json.id_user; 
-            a.textContent = " admin"; 
-            li1.appendChild(i1);
-            ul.appendChild(li1);
-            ul.appendChild(a);
+              //article
+              const article = document.createElement("article");
+              //article ahref
+              const a_href = document.createElement("a");
+              a_href.setAttribute("href", url_source + "pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
 
-            // article p
-            const p = document.createElement("div");
-            p.innerHTML = json.description.substring(0, 100) + "...";
+              const img = document.createElement("img");
+              img.style.width = 300 + "px";
+              img.style.height = 175 + "px";
+              img.style.objectFit = "contain";
+              img.setAttribute("src", json.thumbnail);
+              // article h6
+              const h6 = document.createElement("h6");
+              h6.setAttribute("class", "heading");
+              h6.textContent = json.title;
+              
+              // article ul nospace meta
+              const ul = document.createElement("ul");
+              ul.setAttribute("class", "nospace meta");
+              const li1 = document.createElement("li");
+              let i1 = document.createElement("i");
+              let i2 = document.createElement("i");
+              let a = document.createElement("a");
+              let a2 = document.createElement("a");
+              
+              i1.setAttribute("class", "fa fa-user")
+              a.setAttribute("href", "#");
+              a.textContent = " admin"; 
+              li1.appendChild(i1);
+              ul.appendChild(li1);
+              ul.appendChild(a);
+              a2.setAttribute("id", "auth-delete")
+              a2.style.display = 'inline-block';
+              a2.style.position = 'relative';
+              a2.style.right = '-20%';
+              
+              a2.textContent = " hapus"; 
+              a2.href = "#";
+              a2.addEventListener('click', (event) => {
+                  event.preventDefault();
+                  fetchDeleteArticle(json.id,one_third)
+              })
+              i2.setAttribute("class", "fa fa-trash")
+              a2.innerHTML = a2.innerHTML + " ";
+              a2.appendChild(i2);
+              ul.appendChild(a2);
 
-            // article footer
-            const footer = document.createElement("footer");
-            footer.setAttribute("class", "nospace")
-            const a_footer = document.createElement("a");
-            a_footer.setAttribute("class", "btn");
-            a_footer.textContent = "Baca selengkapnya";
-            a_footer.setAttribute("href", url_source + "pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
-            footer.appendChild(a_footer);
 
-            a_href.appendChild(img);
-            article.appendChild(a_href);
-            article.appendChild(h6);
-            article.appendChild(ul);
-            article.appendChild(p);
-            article.appendChild(footer);        
+              // article p  
+              // const p = document.createElement("div");
+              // p.innerHTML = json.description.substring(0, 100) + "...";
 
-            one_third.appendChild(article);
-            content.appendChild(one_third);
-            count += 1;
+              // article footer
+              const footer = document.createElement("footer");
+              footer.setAttribute("class", "nospace")
+              const a_footer = document.createElement("a");
+              a_footer.setAttribute("class", "btn");
+              a_footer.textContent = "Baca selengkapnya";
+              a_footer.setAttribute("href", url_source + "pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
+              footer.appendChild(document.createElement('br'))
+              footer.appendChild(a_footer);
+
+              a_href.appendChild(img);
+              article.appendChild(a_href);
+              article.appendChild(h6);
+              article.appendChild(document.createElement('br'))
+              article.appendChild(ul);
+              // article.appendChild(p);
+              article.appendChild(footer);        
+
+              one_third.appendChild(article);
+              content.appendChild(one_third);
+              count += 1;
+            }
         })
+        pastikanLogin()
     })
     .catch((error) => console.error(error));
  </script>
