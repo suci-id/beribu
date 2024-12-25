@@ -304,7 +304,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 
             // Menghapus bagian "../" dari path
             let cleanPath = imagePath.replace(/\.\.\//g, "");
-            img.setAttribute("src", cleanPath);
+            img.setAttribute("src", url_source + cleanPath);
             // article h6
             const h6 = document.createElement("h6");
             h6.setAttribute("class", "heading");
