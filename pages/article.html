@@ -69,7 +69,7 @@ Licence URI: https://www.os-templates.com/template-terms
   <main class="hoc container clear"> 
     <div id="newArticleMake">
       <article class="group btmspace-80">
-          <!-- <h6 class="heading">Hai Suci ada karangan baru kah ?</h6> -->
+<!--           <h6 class="heading">Hai Suci ada karangan baru kah ?</h6> -->
           <footer class="nospace"><a href="#" class="btn" onclick="openNewPage()">Edit artikel ini ? <i class="fa fa-pencil"></i> </a></footer>
       </article>
 
@@ -77,8 +77,8 @@ Licence URI: https://www.os-templates.com/template-terms
   </div>
 
     <div class="content">
-      <h1 style="text-align: center; font-weight: bold;" id="this-title-article"></h1>
       <img style="display: block; margin-left: auto; margin-right: auto; width: 50%; " id="articleContentImage" alt="">
+      <h1 style="text-align: center; font-weight: bold;" id="this-title-article"></h1>
       <div id="content-article">
       </div>
       <br>
@@ -276,7 +276,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
         breadcrumb_title.appendChild(a_href);
 
         content_article.innerHTML = result[0].description;
-        // document.getElementById("articleContentImage").setAttribute("src", result[0].thumbnail);
+        document.getElementById("articleContentImage").setAttribute("src", result[0].thumbnail);
         fetchGetComment(id)
       })
       .catch((error) => console.error(error));
