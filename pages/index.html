@@ -287,7 +287,8 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
               img.style.width = 300 + "px";
               img.style.height = 175 + "px";
               img.style.objectFit = "contain";
-              img.setAttribute("src", url_source + json.thumbnail);
+              let cleanPath = json.thumbnail.replace(/\.\.\//g, "");
+              img.setAttribute("src", url_source + cleanPath);
               // article h6
               const h6 = document.createElement("h6");
               h6.setAttribute("class", "heading");
