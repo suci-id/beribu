@@ -355,9 +355,9 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
     };
 
     fetch( url_source + "api/comment.php", requestOptions)
-    .then((response) => response.json())
+    .then((response) => response.text())
     .then((result) => {
-      let resultdata = result.data;
+      let resultdata = JSON.parse(result.data);
       resultdata.forEach((json) => {
         someoneComment(json.nama, json.komentar, convertDate(json.date));
       })
