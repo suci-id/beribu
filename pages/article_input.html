@@ -51,6 +51,7 @@
     <script src="../layout/scripts/CKeditor.js"></script>
 
     <script>
+        const url_source = "https://alanzulwas.my.id/";
         const preview = document.getElementById('preview');
         let dataArticle = []
         imageInput.addEventListener('change', (event) => {
@@ -170,7 +171,7 @@
                 redirect: "follow"
             };
 
-            fetch("../api/article.php", requestOptions)
+            fetch( url_source + "api/article.php", requestOptions)
             .then((response) => response.json())
             .then((result) => {
                 let titleEdit = document.getElementById('titleInput');
@@ -178,7 +179,7 @@
                 dataArticle = result;
                 // console.log(dataArticle);
                 titleEdit.value = result[0].title;
-                imageEdit.setAttribute("src", result[0].thumbnail);
+                imageEdit.setAttribute("src", url_source + result[0].thumbnail);
                 imageEdit.style.display = 'inline-block';
                 editor.setData(result[0].description);
                 if(result[0].kategori == "opini"){
