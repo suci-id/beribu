@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>CKEditor 5 - Quick start CDN</title>
         <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
@@ -46,9 +46,49 @@
     <script src="../layout/scripts/jquery.min.js"></script>
     <script src="../layout/scripts/jquery.backtotop.js"></script>
     <script src="../layout/scripts/jquery.mobilemenu.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.umd.js"></script> -->
 
-    <script src="../layout/scripts/CKeditor.js"></script>
+    <!-- <script src="../layout/scripts/CKeditor.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+
+    <script>
+        const options = {
+            debug: 'info',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+                    ['blockquote', 'code-block'],
+                    // ['link', 'image', 'video', 'formula'],
+                    ['link', 'video', 'formula'],
+
+                    [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+                    [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+                    [{ 'direction': 'rtl' }],                         // text direction
+
+                    [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+                    [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                    [{ 'font': [] }],
+                    [{ 'align': [] }],
+
+                    ['clean']     
+                ],
+                history : {
+                    delay: 2000,
+                    maxStack: 500,
+                    userOnly: false
+                }
+            },
+            theme: 'snow', // or 'bubble'
+            placeholder: 'Tulisan apa yang ingin kamu tulis ....'
+        }
+        const quill = new Quill('#editor', options);
+    </script>
 
     <script>
         const url_source = "https://alanzulwas.my.id/";
@@ -69,7 +109,8 @@
             }
         });
         document.getElementById("btnCK").addEventListener('click', () => {
-            const editorData = editor.getData();
+            // const editorData = editor.getData();
+            const editorData = quill.root.innerHTML;
             // console.log(dataArticle[0].thumbnail);
             try{
                 fetchPostNewArticle(editorData, dataArticle[0].id, dataArticle[0].thumbnail)
@@ -126,7 +167,14 @@
 
                 const result = await response.json();
                 if (response.ok) {
-                    alert('Upload berhasil! ' + result.message);
+                    let message;
+                    if(result.status == 200){
+                        message = 'Upload berhasil! ' + result.message;
+                    }
+                    else{
+                        message = 'Upload gagal! ' + result.message;
+                    }
+                    alert(message);
                     console.log(result.console)
                     window.close();
                 } else {
@@ -181,7 +229,8 @@
                 titleEdit.value = result[0].title;
                 imageEdit.setAttribute("src", url_source + result[0].thumbnail);
                 imageEdit.style.display = 'inline-block';
-                editor.setData(result[0].description);
+                quill.root.innerHTML = result[0].description
+                // editor.setData(result[0].description);
                 if(result[0].kategori == "opini"){
                     document.getElementById("opini-catInput").selected = "true";
                 }
