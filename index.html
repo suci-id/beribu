@@ -6,28 +6,33 @@ Author URI: https://www.os-templates.com/
 Licence: Free to use under our free template licence terms
 Licence URI: https://www.os-templates.com/template-terms
 -->
-<html lang="">
-<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<html lang="id">
 <head>
-<title>Beribu</title>
-<head>
-<title>SMAN 1 PAGUAT</title>
+<title>Titik Nara</title>
+<link rel="icon" type="image/png" href="/logo/logo.png" sizes="32x32">
+<!-- <meta name="google-site-verification" content="_Q1_Mgk_ETYt0p84_G7z-jT9TTePPJtTg1SghM3dxWU"/> //ragil -->
+ <!-- suciid.alanzulwas -->
+<meta name="google-site-verification" content="HcMob21pGnp9tdSdoqkvRhrQ4BJMWj-D1bxFPwVvMM8" />
+<meta name="google-adsense-account" content="ca-pub-9867007825254303">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
 <!-- GOOGEL -->
-<!-- <meta name="description" content="Sekolah kompetitif Dan Berkarakter"> -->
-<meta name="keywords" content="Beribu">
+<meta name="description" content="The Journey Begins Here"> 
+<meta name="keywords" content="Titik Nara">
 <!-- FACEBOOK -->
 <meta property="og:type" content="article">
-<meta property="og:title" content="Beribu">
-<!-- <meta property="og:description" content="Sekolah kompetitif Dan Berkarakter"> -->
-<meta property="og:url" content="https://suci-id.github.io/beribu/">
-<meta property="og:image" content="">
-<meta property="og:site_name" content="Beribu">
+<meta property="og:title" content="Titik Nara">
+<meta property="og:description" content="The Journey Begins Here"> 
+<meta property="og:url" content="https://titiknara.com/">
+<meta property="og:image" content="https://titiknara.com/logo/logo.png">
+<meta property="og:site_name" content="Titik Nara">
 <!-- <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="315"> -->
-</head>
 <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9867007825254303"
+     crossorigin="anonymous"></script>
 </head>
 <body id="top">
 <!-- Top Background Image Wrapper -->
@@ -36,7 +41,7 @@ Licence URI: https://www.os-templates.com/template-terms
     <header id="header" class="hoc clear"> 
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1><a href="index.html">Beribu</a></h1>
+        <h1><a href="index.html">Titik Nara</a></h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear" id="logauth_button_nav">
@@ -200,7 +205,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
 
-    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="/">Beribu</a></p>
+    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="/">Titik Nara</a></p>
     <!-- <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p> -->
 
   </div>
@@ -265,24 +270,23 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
   }
 </script>
  <script>
-  const url_source = "https://alanzulwas.my.id/";  
-
   const requestOptions = {
     method: "GET",
     redirect: "follow"
   };
   
-  fetch( url_source + "api/article.php", requestOptions)
+  fetch("/api/article.php", requestOptions)
     .then((response) => response.text())
     .then((result) => {
         let resultj = JSON.parse(result)
 
         let count = 0;
         let lastData = {};
-        resultj.forEach((json) => {
-          // if(count == 0 ){ headerContentFetch(json) }
-          if(count < 6) {
-
+        resultj
+        .sort((a, b) => b.id - a.id)
+        .forEach((json) => {
+          if(count == 0 ){ headerContentFetch(json) }
+          if(count != 0 && count < 6) {
             const content = document.getElementById("contentArticle");
             // class one_third
             const one_third = document.createElement("li");
@@ -295,7 +299,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
             const article = document.createElement("article");
             //article ahref
             const a_href = document.createElement("a");
-            a_href.setAttribute("href", "https://suci-id.github.io/beribu/pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
+            a_href.setAttribute("href", "/pages/article.html?q=" + json.title.replace(/\s+/g, '_') + "-" + json.id);
 
             const img = document.createElement("img");
             img.style.width = 300 + "px";
@@ -305,7 +309,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 
             // Menghapus bagian "../" dari path
             let cleanPath = imagePath.replace(/\.\.\//g, "");
-            img.setAttribute("src", url_source + cleanPath);
+            img.setAttribute("src", "/" + cleanPath);
             // article h6
             const h6 = document.createElement("h6");
             h6.setAttribute("class", "heading");
@@ -347,10 +351,11 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 
             one_third.appendChild(article);
             content.appendChild(one_third);
-            count += 1;
+            
             lastData = json;
           }
-          headerContentFetch(lastData);
+          count += 1;
+          // headerContentFetch(lastData);
         }
       )
     })
@@ -359,7 +364,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 
     function headerContentFetch(json) {
       let img = document.getElementById("headerContentImage");
-      let imagePath = url_source + json.thumbnail;
+      let imagePath = "/" + json.thumbnail;
 
       // Menghapus bagian "../" dari path
       let cleanPath = imagePath.replace(/\.\.\//g, "");

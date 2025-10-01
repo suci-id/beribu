@@ -21,7 +21,7 @@ function authLogin(){
       redirect: "follow"
     };
     
-    fetch("https://alanzulwas.my.id/api/auth.php", requestOptions)
+    fetch("https://titiknara.com/api/auth.php", requestOptions)
         .then((response) => response.json())
         .then((result) => {
             sessionStorage.setItem("username", result.username)

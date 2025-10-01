@@ -9,9 +9,16 @@ Licence URI: https://www.os-templates.com/template-terms
 <html lang="">
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 <head>
-<title id="titleArticle">Beribu | Article</title>
+<title id="titleArticle">Titik Nara | Article</title>
+<meta name="google-site-verification" content="HcMob21pGnp9tdSdoqkvRhrQ4BJMWj-D1bxFPwVvMM8" />
+<meta name="google-adsense-account" content="ca-pub-9867007825254303">
+<meta name="google-adsense-account" content="ca-pub-9867007825254303">
+<meta property="og:image" content="">
+<link rel="icon" type="image/png" href="/logo/logo.png" sizes="32x32">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9867007825254303"
+     crossorigin="anonymous"></script>
 <link href="../layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 <style>
   .ql-align-justify {
@@ -35,12 +42,12 @@ Licence URI: https://www.os-templates.com/template-terms
     <header id="header" class="hoc clear"> 
       <!-- ################################################################################################ -->
       <div id="logo" class="fl_left">
-        <h1><a href="../index.html">Suci.ID</a></h1>
+        <h1><a href="/">Titik Nara</a></h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear" id="logauth_button_nav">
-          <li><a href="../">Home</a></li>
-          <li><a href="../pages/">Opini</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/pages/?q=kategori-hukum">Opini</a></li>
           <li><a href="../pages/">Hukum</a></li>
           <li><a href="../pages/">Sastra</a></li>
         </ul>
@@ -71,24 +78,18 @@ Licence URI: https://www.os-templates.com/template-terms
     </div>
   </div>
   
-  <div id="breadcrumb" class="hoc clear"> 
+  <!-- <div id="breadcrumb" class="hoc clear"> 
     <ul>
       <li><a href="../index.html">Home</a></li>
       <li><a href="index.html">article</a></li>
       <li id="breadcrumb-title-article"></li>
     </ul>
-  </div>
+  </div> -->
 </div>
 <div class="wrapper row3">
   <main class="hoc container clear"> 
-    <div id="newArticleMake">
-      <article class="group btmspace-80">
-<!--           <h6 class="heading">Hai Suci ada karangan baru kah ?</h6> -->
-          <footer class="nospace"><a href="#" class="btn" onclick="openNewPage()">Edit artikel ini ? <i class="fa fa-pencil"></i> </a></footer>
-      </article>
-
-      <hr class="btmspace-80">
-  </div>
+    <div id="newArticleMakeTop">
+    </div>
 
     <div class="content">
       <img style="display: block; margin-left: auto; margin-right: auto; width: 50%; " id="articleContentImage" alt="">
@@ -98,13 +99,7 @@ Licence URI: https://www.os-templates.com/template-terms
       </div>
       <br>
 
-      <div id="newArticleMake">
-        <article class="group btmspace-80">
-            <!-- <h6 class="heading">Hai Suci ada karangan baru kah ?</h6> -->
-            <footer class="nospace"><a href="#" class="btn" onclick="openNewPage()">Edit artikel ini ? <i class="fa fa-pencil"></i> </a></footer>
-        </article>
-  
-        <hr class="btmspace-80">
+      <div id="newArticleMakeBot">
       </div>
 
       <div id="comments">
@@ -178,7 +173,7 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 </div>
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
-    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="../">Beribu</a></p>
+    <p class="fl_left">Copyright &copy; 2024 - All Rights Reserved - <a href="../">Titik Nara</a></p>
   </div>
 </div>
 
@@ -210,8 +205,15 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 
   function pastikanLogin(){
     let buttonNav = document.getElementById("logauth_button_nav");
+    const makeartikel = `<article class="group btmspace-80">
+            <h6 class="heading">Hai Suci ada karangan baru kah ?</h6>
+            <footer class="nospace"><a href="#" class="btn" onclick="openNewPage()">Edit artikel ini ? <i class="fa fa-pencil"></i> </a></footer>
+        </article>
+  
+        <hr class="btmspace-80">`;
       if(sessionStorage.getItem("username")){
-
+          document.getElementById('newArticleMakeTop').innerHTML = makeartikel;
+          document.getElementById('newArticleMakeBot').innerHTML = makeartikel;
           document.getElementById("logoutSession").style.display = "block";
           document.getElementById("loginSession").style.display = "none";
           const li = document.createElement("li");
@@ -249,9 +251,9 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
 <script>
   document.addEventListener("DOMContentLoaded", fetchArticle);
   const artice_title = document.getElementById("this-title-article");
-  const breadcrumb_title = document.getElementById("breadcrumb-title-article");
+  // const breadcrumb_title = document.getElementById("breadcrumb-title-article");
   const content_article = document.getElementById("content-article");
-  const url_source = "https://alanzulwas.my.id/";
+  const url_source = "https://titiknara.com/";
 
   function getIDforArticle(){
     const params = new URLSearchParams(window.location.search);
@@ -288,12 +290,20 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
         a_href.innerHTML = result[0].title;
         artice_title.innerHTML = result[0].title;
         
-        breadcrumb_title.appendChild(a_href);
+        // breadcrumb_title.appendChild(a_href);
+
+        
+        
 
         content_article.innerHTML = result[0].description;
         let cleanPath = result[0].thumbnail.replace(/\.\.\//g, "");
+        
         document.getElementById("articleContentImage").setAttribute("src", url_source + cleanPath);
         fetchGetComment(id)
+        const metaTag = document.querySelector('meta[property="og:image"]');
+        metaTag.content = url_source + cleanPath;
+        const title = document.querySelector('title');
+        title.innerHTML = `Titik Nara | ${result[0].title}`
       })
       .catch((error) => console.error(error));
     }
@@ -369,12 +379,13 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
     };
 
     fetch( url_source + "api/comment.php", requestOptions)
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then((result) => {
-      let resultdata = JSON.parse(result.data);
-      resultdata.forEach((json) => {
-        someoneComment(json.nama, json.komentar, convertDate(json.date));
-      })
+      if(result.data){
+        result.data.forEach((json) => {
+          someoneComment(json.nama, json.komentar, convertDate(json.date));
+        })
+      }
     })
     .catch((error) => console.error(error));
   }
@@ -471,7 +482,9 @@ Suci Priyanti Kartika Chanda Sari adalah penulis, pengacara, dan peneliti yang f
           alert(result.message);
         }
         else{
-          someoneComment(nama, komentar, convertDateNow());
+          if(!result.data){
+            someoneComment(nama, komentar, convertDateNow());
+          }
         }
         
       })

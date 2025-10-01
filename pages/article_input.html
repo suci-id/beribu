@@ -91,7 +91,7 @@
     </script>
 
     <script>
-        const url_source = "https://alanzulwas.my.id/";
+        const url_source = "https://titiknara.com/";
         const preview = document.getElementById('preview');
         let dataArticle = []
         imageInput.addEventListener('change', (event) => {
@@ -108,14 +108,14 @@
                 preview.style.display = 'none';
             }
         });
-        document.getElementById("btnCK").addEventListener('click', () => {
+        document.getElementById("btnCK").addEventListener('click', async () => {
             // const editorData = editor.getData();
             const editorData = quill.root.innerHTML;
             // console.log(dataArticle[0].thumbnail);
             try{
-                fetchPostNewArticle(editorData, dataArticle[0].id, dataArticle[0].thumbnail)
+                await fetchPostNewArticle(editorData, dataArticle[0].id, dataArticle[0].thumbnail)
             } catch (e) {
-                fetchPostNewArticle(editorData, 0, 0)
+                await fetchPostNewArticle(editorData, 0, 0)
             }
             
             // console.log(editorData);
@@ -127,7 +127,7 @@
             const imageInput = document.getElementById('imageInput').files[0];
             const titleInput = document.getElementById('titleInput').value;
             const catInput = document.getElementById('catInput').value;
-            const url_source = "https://alanzulwas.my.id/";
+            const url_source = "https://titiknara.com/";
 
             if(!dataArticle[0]){
                 if (textInput == '' || !imageInput) {
@@ -160,7 +160,7 @@
             formData.append('kategori', catInput);
 
             try {
-                const response = await fetch( url_source + 'api/article.php', {
+                const response = await fetch( '/api/article.php', {
                     method: 'POST',
                     body: formData,
                 });
